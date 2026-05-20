@@ -1,4 +1,10 @@
-# Backend Assignment
+# Backend Assignment API
+
+[![Go Version](https://img.shields.io/badge/Go-1.22-00ADD8?logo=go&logoColor=white)](./go.mod)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Deployment: Render](https://img.shields.io/badge/Deployment-Render-46E3B7?logo=render&logoColor=white)](https://backend-assignment-9z1m.onrender.com/)
+[![Health Check](https://img.shields.io/website?down_message=down&label=health&up_message=up&url=https%3A%2F%2Fbackend-assignment-9z1m.onrender.com%2Fhealth)](https://backend-assignment-9z1m.onrender.com/health)
+[![Status: Active](https://img.shields.io/badge/status-active-success)](https://github.com/anan5093/backend-assignment)
 
 A production-structured Go HTTP service implementing a concurrency-safe rolling-window rate limiter and an optimized product catalog API — built with in-memory storage, a layered architecture, and a clean separation of concerns.
 
@@ -29,6 +35,16 @@ A production-structured Go HTTP service implementing a concurrency-safe rolling-
 15. [Challenges Faced](#challenges-faced)
 16. [Verified Test Output](#verified-test-output)
 17. [AI Usage Disclosure](#ai-usage-disclosure)
+18. [Repository Metadata](#repository-metadata)
+19. [Live Demo and API Base URL](#live-demo-and-api-base-url)
+20. [Deployment Guide (Render)](#deployment-guide-render)
+21. [Recent Development Updates](#recent-development-updates)
+22. [Maintainer and Contact](#maintainer-and-contact)
+23. [License](#license)
+24. [Project Status](#project-status)
+25. [Contribution Workflow](#contribution-workflow)
+26. [Topics and Keywords](#topics-and-keywords)
+27. [Roadmap Additions](#roadmap-additions)
 
 ---
 
@@ -876,3 +892,186 @@ Specific areas where AI assistance was applied:
 
 All critical engineering decisions were independently reviewed. Endpoints were manually tested using `curl` and PowerShell. Concurrency behaviour — including the rate limiter's `sync.RWMutex` usage and the atomic ID generator — was manually verified for correctness. The final code structure, validation logic, and HTTP status code mapping reflect deliberate engineering choices, not generated defaults.
 
+---
+
+## Repository Metadata
+
+- **Repository Title:** Backend Assignment API
+- **Repository Name:** [`anan5093/backend-assignment`](https://github.com/anan5093/backend-assignment)
+- **Short Description:** Production-structured Go backend implementing a concurrency-safe rolling-window rate limiter and optimized product catalog API with layered architecture and in-memory storage.
+- **Primary Language:** Go (1.22)
+- **Deployment Platform:** Render
+- **Default Branch:** `main`
+
+> Core project badges are provided at the top of this README for quick access.
+
+---
+
+## Live Demo and API Base URL
+
+- **Live Deployment URL:** https://backend-assignment-9z1m.onrender.com/
+- **Production API Base URL:** `https://backend-assignment-9z1m.onrender.com`
+- **Local API Base URL:** `http://localhost:8080`
+
+### Health Endpoint Usage
+
+```bash
+# Root health/info endpoint
+curl -i https://backend-assignment-9z1m.onrender.com/
+
+# Dedicated health endpoint
+curl -i https://backend-assignment-9z1m.onrender.com/health
+```
+
+Expected success responses:
+
+```json
+{
+  "message": "Backend Assignment API Running",
+  "status": "healthy"
+}
+```
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+## Deployment Guide (Render)
+
+This repository is configured for cloud deployment on Render using the Go service runtime and dynamic port binding.
+
+### 1) GitHub Integration
+
+1. Create a new **Web Service** on Render.
+2. Connect your GitHub account and select your fork/target repository (for example, this project: `anan5093/backend-assignment`).
+3. Configure auto-deploy from your target branch (typically `main`).
+
+### 2) Build and Start Commands
+
+Use one of the following options:
+
+```bash
+# Build command
+go build -o server ./cmd/server
+```
+
+```bash
+# Start command
+./server
+```
+
+Alternative (simple, slower cold start):
+
+```bash
+go run ./cmd/server
+```
+
+### 3) Environment Variables
+
+- `PORT` is injected by Render at runtime.
+- The server supports dynamic cloud port assignment via:
+  - `os.Getenv("PORT")` when set
+  - fallback to `8080` when unset (local development)
+
+### 4) Health Check Configuration
+
+Recommended health check path:
+
+- `/health` (dedicated)
+- `/` (also valid root API health/info response)
+
+### 5) Production Deployment Notes
+
+- Data is in-memory; restarts or redeployments clear runtime state.
+- Horizontal scaling is not state-safe for this assignment design (no shared distributed store).
+- Keep a single service instance for consistent in-memory behavior.
+- Graceful shutdown is implemented with a 5-second timeout for in-flight request handling.
+
+---
+
+## Recent Development Updates
+
+Latest repository evolution and deployment-focused enhancements:
+
+| Area | Update |
+|------|--------|
+| Main server bootstrap | Refactored `main` startup and shutdown flow for cleaner production wiring |
+| Root endpoint | Added `GET /` endpoint returning JSON service health/info |
+| Health checks | Added dedicated `GET /health` endpoint for platform probes |
+| Cloud portability | Added dynamic `PORT` handling for Render and similar platforms |
+| Deployment stability | Updated response formatting and health output consistency |
+| Operational readiness | Improved startup/shutdown logging and graceful termination behavior |
+
+### Commit Highlights
+
+- Refactored the main server startup/shutdown flow and added root + dedicated health check routes.
+- Improved health response formatting for cleaner deployment probe output.
+
+---
+
+## Maintainer and Contact
+
+- **Maintainer:** Anand Raj
+- **GitHub:** https://github.com/anan5093
+- **Repository:** https://github.com/anan5093/backend-assignment
+- **Issues/Support:** Please open an issue in the repository for bugs, suggestions, or deployment questions.
+
+### Contribution Ownership
+
+By contributing to this repository, you affirm that your submissions are your original work (or appropriately licensed), and you agree that accepted contributions are maintained under this repository's MIT License and project governance by the repository maintainer.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**.
+
+- Full license text: [`LICENSE`](./LICENSE)
+- SPDX identifier: `MIT`
+
+You are free to use, modify, distribute, and sublicense this software, provided the copyright and license notice are included.
+The software is provided "as is", without warranty of any kind.
+
+---
+
+## Project Status
+
+**Current Status:** Active and deployed.
+
+The API is functional for assignment scope and cloud-hosted usage, including health endpoints and dynamic cloud port support. Current architecture remains intentionally in-memory and single-instance to match assignment constraints.
+
+---
+
+## Contribution Workflow
+
+1. Fork the repository.
+2. Create a feature branch from `main`.
+3. Make changes with clear commits.
+4. Run:
+   ```bash
+   go build ./...
+   go test ./...
+   ```
+5. Open a pull request with a clear change summary and verification notes.
+
+---
+
+## Topics and Keywords
+
+`go` · `golang` · `rest-api` · `backend` · `http-server` · `gorilla-mux` · `concurrency` · `rate-limiter` · `product-catalog` · `layered-architecture` · `in-memory-storage` · `deployment` · `render` · `api-design`
+
+---
+
+## Roadmap Additions
+
+In addition to the existing [Future Improvements](#future-improvements), near-term roadmap enhancements include:
+
+- Implement CI workflows for automated build/test validation on pull requests.
+- Document deployment workflow screenshots/checklists for smoother onboarding.
+- Expand API reference tables with root and health endpoint request/response examples.
+- Provide an optional containerized deployment path for consistent local/prod parity.
+- Introduce an observability baseline (structured logs and endpoint-level metrics).
