@@ -953,7 +953,7 @@ This repository is configured for cloud deployment on Render using the Go servic
 ### 1) GitHub Integration
 
 1. Create a new **Web Service** on Render.
-2. Connect your GitHub account and select `anan5093/backend-assignment`.
+2. Connect your GitHub account and select your fork/target repository (for example, this project: `anan5093/backend-assignment`).
 3. Configure auto-deploy from your target branch (typically `main`).
 
 ### 2) Build and Start Commands
@@ -1014,8 +1014,8 @@ Latest repository evolution and deployment-focused enhancements:
 
 ### Commit Highlights
 
-- `40b1d0c` — Refactor main function and add health check routes
-- `9aacb0b` — Fix formatting in health check response
+- Refactored the main server startup/shutdown flow and added root + dedicated health check routes.
+- Improved health response formatting for cleaner deployment probe output.
 
 ---
 
@@ -1076,8 +1076,8 @@ The API is functional for assignment scope and cloud-hosted usage, including hea
 
 In addition to the existing [Future Improvements](#future-improvements), near-term roadmap enhancements include:
 
-- Add CI workflows for automated build/test validation on pull requests.
-- Add deployment workflow documentation screenshots/checklists for smoother onboarding.
-- Add request/response examples for root and health endpoints in API reference tables.
-- Add optional containerized deployment path for consistent local/prod parity.
-- Add observability baseline (structured logs and endpoint-level metrics).
+- Implement CI workflows for automated build/test validation on pull requests.
+- Document deployment workflow screenshots/checklists for smoother onboarding.
+- Expand API reference tables with root and health endpoint request/response examples.
+- Provide an optional containerized deployment path for consistent local/prod parity.
+- Introduce an observability baseline (structured logs and endpoint-level metrics).
