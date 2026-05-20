@@ -903,13 +903,7 @@ All critical engineering decisions were independently reviewed. Endpoints were m
 - **Deployment Platform:** Render
 - **Default Branch:** `main`
 
-### Badges
-
-[![Go Version](https://img.shields.io/badge/Go-1.22-00ADD8?logo=go&logoColor=white)](./go.mod)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Deployment: Render](https://img.shields.io/badge/Deployment-Render-46E3B7?logo=render&logoColor=white)](https://backend-assignment-9z1m.onrender.com/)
-[![Health Check](https://img.shields.io/website?down_message=down&label=health&up_message=up&url=https%3A%2F%2Fbackend-assignment-9z1m.onrender.com%2Fhealth)](https://backend-assignment-9z1m.onrender.com/health)
-[![Status: Active](https://img.shields.io/badge/status-active-success)](https://github.com/anan5093/backend-assignment)
+> Core project badges are provided at the top of this README for quick access.
 
 ---
 
