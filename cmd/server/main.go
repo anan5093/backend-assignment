@@ -44,8 +44,8 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 
 		w.Write([]byte(`{
-			"message":"Backend Assignment API Running",
-			"status":"healthy"
+		"message":"Backend Assignment API Running",
+		"status":"healthy"
 		}`))
 	}).Methods(http.MethodGet)
 
